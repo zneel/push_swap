@@ -6,16 +6,17 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 18:10:52 by ebouvier          #+#    #+#             */
-/*   Updated: 2023/05/11 23:53:05 by ebouvier         ###   ########.fr       */
+/*   Updated: 2023/05/13 16:54:02 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "push_swap.h"
 
 int	check_input(int ac, char **av)
 {
 	int	i;
-	int j;
+	int	j;
 
 	i = 1;
 	if (ac < 2)
@@ -28,46 +29,53 @@ int	check_input(int ac, char **av)
 			if (!ft_isdigit(av[i][j]))
 				return (0);
 			j++;
-		}		
+		}
 		i++;
 	}
 	return (1);
 }
 
-t_list	*parse_to_list(int ac, char **av)
+int	*parse(int ac, char **av)
 {
-	int		i;
-	t_list	*head;
-	t_list	*new;
-	int		*val;
+	int	i;
+	int	*res;
 
-    i = 1;
-    head = NULL;
-    new = NULL;
-    val = NULL;
-	while (i < ac)
+	i = 0;
+	res = malloc(sizeof(int) * (ac - 1));
+	if (!res)
+		return (0);
+	while (i < ac - 1)
 	{
-		val = malloc(sizeof(int));
-		if (!val)
-			return (ft_lstclear(&head, free), NULL);
-		*val = ft_atoi(av[i]);
-		new = ft_lstnew(val);
-        if (!new)
-            return (ft_lstclear(&head, free), NULL);
-		ft_lstadd_back(&head, new);
+		res[i] = ft_atoi(av[i + 1]);
 		i++;
 	}
-	return (head);
+	return (res);
+}
+
+void	print_arr(int *arr, int size)
+{
+	int i;
+
+	i = 0;
+	while (i < size)
+		printf("%d\n", arr[i++]);
 }
 
 int	main(int ac, char **av)
 {
-	t_list *stack;
+	int		*input;
+	t_push_swap	ps;
 
+	ps.stack_a = malloc(sizeof(t_stack));
+	if (!ps.stack_a)
+		return (0);
+	ps.stack_a->data = malloc(sizeof(ac - 1));
+	if (ps.stack_a->data)
+		return (0);
 	if (!check_input(ac, av))
 		return (ft_putstr_fd("Error\n", 1), 0);
-	stack = parse_to_list(ac, av);
-	ft_lstprint_int(stack);
-	ft_lstclear(&stack, free);
+	input = parse(ac, av);
+	print_arr(input, ac - 1);
+	free(input);
 	return (0);
 }
