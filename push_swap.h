@@ -6,14 +6,14 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 18:09:32 by ebouvier          #+#    #+#             */
-/*   Updated: 2023/05/13 23:13:54 by ebouvier         ###   ########.fr       */
+/*   Updated: 2023/05/13 23:32:07 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include "libft/includes/libft.h"
+# include "libft.h"
 # include <stdio.h>
 # include <stdlib.h>
 
@@ -41,6 +41,7 @@ void				rr(t_stack *stack_a, t_stack *stack_b);
 void				rra(t_stack *stack_a, int print);
 void				rrb(t_stack *stack_b, int print);
 void				rrr(t_stack *stack_a, t_stack *stack_b);
+
 int					check_input(int ac, char **av);
 int					*parse(int ac, char **av);
 void				print_arr(int *arr, int size);

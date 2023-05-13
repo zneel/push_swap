@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 23:14:45 by ebouvier          #+#    #+#             */
-/*   Updated: 2023/05/13 23:17:14 by ebouvier         ###   ########.fr       */
+/*   Updated: 2023/05/13 23:44:38 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	sa(t_stack *stack_a, int print)
 	int	top;
 	int	tmp;
 
-	top = stack_a->top - 1;
+	top = stack_a->top;
 	if (stack_a->top > 0)
 	{
 		tmp = stack_a->data[top];
@@ -47,7 +47,7 @@ void	sb(t_stack *stack_b, int print)
 	int	top;
 	int	tmp;
 
-	top = stack_b->top - 1;
+	top = stack_b->top;
 	if (stack_b->top > 0)
 	{
 		tmp = stack_b->data[top];

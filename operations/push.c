@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 23:15:24 by ebouvier          #+#    #+#             */
-/*   Updated: 2023/05/13 23:20:30 by ebouvier         ###   ########.fr       */
+/*   Updated: 2023/05/13 23:48:50 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ void	pa(t_stack *stack_b, t_stack *stack_a)
 	int	a_top;
 	int	element;
 
-	b_top = stack_b->top - 1;
-	a_top = stack_a->top - 1;
-	if (b_top > 0)
+	b_top = stack_b->top;
+	a_top = stack_a->top;
+	if (b_top >= 0)
 	{
 		element = stack_b->data[b_top];
 		stack_a->data[++a_top] = element;
@@ -52,9 +52,9 @@ void	pb(t_stack *stack_a, t_stack *stack_b)
 	int b_top;
 	int element;
 
-	a_top = stack_a->top - 1;
-	b_top = stack_b->top - 1;
-	if (a_top > 0)
+	a_top = stack_a->top;
+	b_top = stack_b->top;
+	if (a_top >= 0)
 	{
 		element = stack_a->data[a_top];
 		stack_b->data[++b_top] = element;

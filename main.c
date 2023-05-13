@@ -6,11 +6,10 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 18:10:52 by ebouvier          #+#    #+#             */
-/*   Updated: 2023/05/13 23:18:32 by ebouvier         ###   ########.fr       */
+/*   Updated: 2023/05/13 23:49:04 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/includes/libft.h"
 #include "push_swap.h"
 
 int	init_datastructures(int *arr, int size, t_push_swap *instance)
@@ -21,7 +20,7 @@ int	init_datastructures(int *arr, int size, t_push_swap *instance)
 	instance->stack_a->data = malloc(sizeof(int) * (size));
 	if (!instance->stack_a->data)
 		return (0);
-	instance->stack_a->top = size;
+	instance->stack_a->top = size - 1;
 	instance->stack_a->size = size;
 	ft_memcpy(instance->stack_a->data, arr, size * sizeof(int));
 	instance->stack_b = malloc(sizeof(t_stack));
@@ -39,7 +38,7 @@ void print_stack(t_stack *stack)
 {
 	int i;
 
-	i = stack->top - 1;
+	i = stack->top;
 	printf("stack->top=%d\n", stack->top);
 	printf("stack->size=%d\n", stack->size);
 	while (i >= 0)
@@ -66,6 +65,8 @@ int	main(int ac, char **av)
 	print_stack(instance.stack_b);
 
 	sa(instance.stack_a,1);
+	pb(instance.stack_a, instance.stack_b);
+	pa(instance.stack_b, instance.stack_a);
 	printf("stack a\n");
 	print_stack(instance.stack_a);
 	printf("stack b\n");

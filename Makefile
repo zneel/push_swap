@@ -6,7 +6,7 @@
 #    By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/11 18:09:36 by ebouvier          #+#    #+#              #
-#    Updated: 2023/05/13 23:18:04 by ebouvier         ###   ########.fr        #
+#    Updated: 2023/05/13 23:33:11 by ebouvier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address
 
 SRCS =	main.c operations/push.c operations/rotate.c operations/reverse_rotate.c \
-		operations/swap.c
+		operations/swap.c parser.c solver.c
 
 OBJS = $(SRCS:.c=.o)
 HEADER_FILES = push_swap.h
@@ -28,7 +28,7 @@ $(NAME): $(OBJS) $(HEADER_FILES) $(LIBFT)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) -L$(LIBFT_DIR) -lft
 
 $(OBJS): %.o: %.c $(HEADER_FILES)
-	$(CC) $(CFLAGS) -I$(LIBFT_DIR)/includes -c $< -o $@
+	$(CC) $(CFLAGS) -I. -I$(LIBFT_DIR)/includes -c $< -o $@
 
 $(LIBFT):
 	$(MAKE) -C $(LIBFT_DIR)
