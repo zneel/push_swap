@@ -12,14 +12,14 @@ void	sa(t_stack *stack_a, int print)
 	int	top;
 	int	tmp;
 
-	top = stack_a->top;
+	top = stack_a->top - 1;
 	if (stack_a->top > 1)
 	{
 		tmp = stack_a->data[top];
 		stack_a->data[top] = stack_a->data[top - 1];
 		stack_a->data[top - 1] = tmp;
-        if (print)
-		    ft_putendl_fd("sa", 1);
+		if (print)
+			ft_putendl_fd("sa", 1);
 	}
 }
 
@@ -35,14 +35,14 @@ void	sb(t_stack *stack_b, int print)
 	int	top;
 	int	tmp;
 
-	top = stack_b->top;
+	top = stack_b->top - 1;
 	if (stack_b->top > 1)
 	{
 		tmp = stack_b->data[top];
 		stack_b->data[top] = stack_b->data[top - 1];
 		stack_b->data[top - 1] = tmp;
-        if (print)
-		    ft_putendl_fd("sb", 1);
+		if (print)
+			ft_putendl_fd("sb", 1);
 	}
 }
 
@@ -57,7 +57,7 @@ void	swap_ss(t_stack *stack_a, t_stack *stack_b)
 	if (stack_a->top > 1 && stack_b->top > 1)
 	{
 		sa(stack_a, 0);
-		sb(stack_b, 0 );
+		sb(stack_b, 0);
 		ft_putendl_fd("ss", 1);
 	}
 }
@@ -133,8 +133,8 @@ void	ra(t_stack *stack_a, int print)
 	while (i++ < stack_a->top - 1)
 		stack_a->data[i] = stack_a->data[i + 1];
 	stack_a->data[stack_a->top - 1] = first;
-    if (print)
-	    ft_putendl_fd("ra", 1);
+	if (print)
+		ft_putendl_fd("ra", 1);
 }
 
 /**
@@ -156,8 +156,8 @@ void	rb(t_stack *stack_b, int print)
 	while (i++ < stack_b->top - 1)
 		stack_b->data[i] = stack_b->data[i + 1];
 	stack_b->data[stack_b->top - 1] = first;
-    if (print)
-	    ft_putendl_fd("rb", 1);
+	if (print)
+		ft_putendl_fd("rb", 1);
 }
 
 /**
@@ -192,8 +192,8 @@ void	rra(t_stack *stack_a, int print)
 	while (i-- > 0)
 		stack_a->data[i] = stack_a->data[i - 1];
 	stack_a->data[0] = last;
-    if (print)
-	    ft_putendl_fd("rra", 1);
+	if (print)
+		ft_putendl_fd("rra", 1);
 }
 
 /**
@@ -215,8 +215,8 @@ void	rrb(t_stack *stack_b, int print)
 	while (i-- > 0)
 		stack_b->data[i] = stack_b->data[i - 1];
 	stack_b->data[0] = last;
-    if (print)
-    	ft_putendl_fd("rrb", 1);
+	if (print)
+		ft_putendl_fd("rrb", 1);
 }
 
 /**
@@ -227,7 +227,7 @@ void	rrb(t_stack *stack_b, int print)
  */
 void	rrr(t_stack *stack_a, t_stack *stack_b)
 {
-    rra(stack_a, 0);
-    rrb(stack_b, 0);
-    ft_putendl_fd("rrr", 1);
+	rra(stack_a, 0);
+	rrb(stack_b, 0);
+	ft_putendl_fd("rrr", 1);
 }
