@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elliotbouvier <elliotbouvier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 18:10:52 by ebouvier          #+#    #+#             */
-/*   Updated: 2023/05/13 16:54:02 by ebouvier         ###   ########.fr       */
+/*   Updated: 2023/05/13 17:37:28 by elliotbouvi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "libft/includes/libft.h"
 #include "push_swap.h"
 
 int	check_input(int ac, char **av)
@@ -66,15 +66,9 @@ int	main(int ac, char **av)
 	int		*input;
 	t_push_swap	ps;
 
-	ps.stack_a = malloc(sizeof(t_stack));
-	if (!ps.stack_a)
-		return (0);
-	ps.stack_a->data = malloc(sizeof(ac - 1));
-	if (ps.stack_a->data)
-		return (0);
 	if (!check_input(ac, av))
 		return (ft_putstr_fd("Error\n", 1), 0);
-	input = parse(ac, av);
+	input = parse(ac, av, &ps);
 	print_arr(input, ac - 1);
 	free(input);
 	return (0);
