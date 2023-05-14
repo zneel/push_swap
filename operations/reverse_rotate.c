@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 23:16:12 by ebouvier          #+#    #+#             */
-/*   Updated: 2023/05/13 23:17:07 by ebouvier         ###   ########.fr       */
+/*   Updated: 2023/05/14 12:11:02 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,13 @@ void	rra(t_stack *stack_a, int print)
 
 	if (stack_a->top <= 0)
 		return ;
-	i = stack_a->top - 1;
-	last = stack_a->data[stack_a->top - 1];
-	while (i-- > 0)
+	i = stack_a->top;
+	last = stack_a->data[stack_a->top];
+	while (i > 0)
+	{
 		stack_a->data[i] = stack_a->data[i - 1];
+		i--;
+	}
 	stack_a->data[0] = last;
 	if (print)
 		ft_putendl_fd("rra", 1);
@@ -49,10 +52,13 @@ void	rrb(t_stack *stack_b, int print)
 
 	if (stack_b->top <= 0)
 		return ;
-	i = stack_b->top - 1;
-	last = stack_b->data[stack_b->top - 1];
-	while (i-- > 0)
+	i = stack_b->top;
+	last = stack_b->data[stack_b->top];
+	while (i > 0)
+	{
 		stack_b->data[i] = stack_b->data[i - 1];
+		i--;
+	}
 	stack_b->data[0] = last;
 	if (print)
 		ft_putendl_fd("rrb", 1);
