@@ -6,11 +6,29 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 23:16:12 by ebouvier          #+#    #+#             */
-/*   Updated: 2023/05/14 12:11:02 by ebouvier         ###   ########.fr       */
+/*   Updated: 2023/05/15 17:37:09 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int	reverse_rotate(t_stack *stack)
+{
+	int	i;
+	int	last;
+
+	if (stack->top <= 0)
+		return (0);
+	i = stack->top;
+	last = stack->data[stack->top];
+	while (i > 0)
+	{
+		stack->data[i] = stack->data[i - 1];
+		i--;
+	}
+	stack->data[0] = last;
+	return (1);
+}
 
 /**
  * @brief 
@@ -19,23 +37,17 @@
  * The last element becomes the first one.
  * @param stack_a 
  */
-void	rra(t_stack *stack_a, int print)
+void	rra(t_push_swap *ps)
 {
-	int	i;
-	int	last;
+	t_list	*node;
 
-	if (stack_a->top <= 0)
-		return ;
-	i = stack_a->top;
-	last = stack_a->data[stack_a->top];
-	while (i > 0)
+	if (reverse_rotate(ps->stack_a))
 	{
-		stack_a->data[i] = stack_a->data[i - 1];
-		i--;
+		node = ft_lstnew(ft_strdup("rra\n"));
+		if (!node)
+			return ;
+		ft_lstadd_back(&ps->output, node);
 	}
-	stack_a->data[0] = last;
-	if (print)
-		ft_putendl_fd("rra", 1);
 }
 
 /**
@@ -45,34 +57,15 @@ void	rra(t_stack *stack_a, int print)
  * The last element becomes the first one.
  * @param stack_b 
  */
-void	rrb(t_stack *stack_b, int print)
+void	rrb(t_push_swap *ps)
 {
-	int	i;
-	int	last;
+	t_list	*node;
 
-	if (stack_b->top <= 0)
-		return ;
-	i = stack_b->top;
-	last = stack_b->data[stack_b->top];
-	while (i > 0)
+	if (reverse_rotate(ps->stack_b))
 	{
-		stack_b->data[i] = stack_b->data[i - 1];
-		i--;
+		node = ft_lstnew(ft_strdup("rrb\n"));
+		if (!node)
+			return ;
+		ft_lstadd_back(&ps->output, node);
 	}
-	stack_b->data[0] = last;
-	if (print)
-		ft_putendl_fd("rrb", 1);
-}
-
-/**
- * @brief 
- * rra and rrb at the same time.
- * @param stack_a 
- * @param stack_b
- */
-void	rrr(t_stack *stack_a, t_stack *stack_b)
-{
-	rra(stack_a, 0);
-	rrb(stack_b, 0);
-	ft_putendl_fd("rrr", 1);
 }

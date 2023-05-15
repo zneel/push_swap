@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 23:16:20 by ebouvier          #+#    #+#             */
-/*   Updated: 2023/05/14 12:14:20 by ebouvier         ###   ########.fr       */
+/*   Updated: 2023/05/15 17:24:43 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,47 @@
 
 /**
  * @brief 
- * rotate a
+ * rotate x
  * Shift up all elements of stack a by 1.
  * The first element becomes the last one.
- * @param stack_a 
+ * @param stack
  */
-void	ra(t_stack *stack_a, int print)
+int	rotate(t_stack *stack)
 {
 	int	i;
 	int	first;
 
-	if (stack_a->top <= 0)
-		return ;
+	if (stack->top <= 0)
+		return (0);
 	i = 0;
-	first = stack_a->data[0];
-	while (i < stack_a->top)
+	first = stack->data[0];
+	while (i < stack->top)
 	{
-		stack_a->data[i] = stack_a->data[i + 1];
+		stack->data[i] = stack->data[i + 1];
 		i++;
 	}
-	stack_a->data[stack_a->top] = first;
-	if (print)
-		ft_putendl_fd("ra", 1);
+	stack->data[stack->top] = first;
+	return (1);
+}
+
+/**
+ * @brief 
+ * rotate a
+ * Shift up all elements of stack a by 1.
+ * The first element becomes the last one.
+ * @param ps 
+ */
+void	ra(t_push_swap *ps)
+{
+	t_list	*node;
+
+	if (rotate(ps->stack_a))
+	{
+		node = ft_lstnew(ft_strdup("ra\n"));
+		if (!node)
+			return ;
+		ft_lstadd_back(&ps->output, node);
+	}
 }
 
 /**
@@ -45,34 +64,15 @@ void	ra(t_stack *stack_a, int print)
  * The first element becomes the last one.
  * @param stack_b 
  */
-void	rb(t_stack *stack_b, int print)
+void	rb(t_push_swap *ps)
 {
-	int	i;
-	int	first;
+	t_list	*node;
 
-	if (stack_b->top <= 0)
-		return ;
-	i = 0;
-	first = stack_b->data[0];
-	while (i < stack_b->top)
+	if (rotate(ps->stack_b))
 	{
-		stack_b->data[i] = stack_b->data[i + 1];
-		i++;
+		node = ft_lstnew(ft_strdup("rb\n"));
+		if (!node)
+			return ;
+		ft_lstadd_back(&ps->output, node);
 	}
-	stack_b->data[stack_b->top] = first;
-	if (print)
-		ft_putendl_fd("rb", 1);
-}
-
-/**
- * @brief 
- * ra and rb at the same time
- * @param stack_a 
- * @param stack_b 
- */
-void	rr(t_stack *stack_a, t_stack *stack_b)
-{
-	ra(stack_a, 0);
-	rb(stack_b, 0);
-	ft_putendl_fd("rr", 1);
 }

@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 18:09:32 by ebouvier          #+#    #+#             */
-/*   Updated: 2023/05/14 17:00:12 by ebouvier         ###   ########.fr       */
+/*   Updated: 2023/05/15 17:37:05 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define PUSH_SWAP_H
 
 # include "libft.h"
+# include "lists.h"
 # include <stdio.h>
 # include <stdlib.h>
 
@@ -28,19 +29,17 @@ typedef struct s_push_swap
 {
 	struct s_stack	*stack_a;
 	struct s_stack	*stack_b;
+	t_list			*output;
 }					t_push_swap;
 
-void				sa(t_stack *stack_a, int print);
-void				sb(t_stack *stack_b, int print);
-void				ss(t_stack *stack_a, t_stack *stack_b);
-void				pa(t_stack *stack_b, t_stack *stack_a);
-void				pb(t_stack *stack_a, t_stack *stack_b);
-void				ra(t_stack *stack_a, int print);
-void				rb(t_stack *stack_b, int print);
-void				rr(t_stack *stack_a, t_stack *stack_b);
-void				rra(t_stack *stack_a, int print);
-void				rrb(t_stack *stack_b, int print);
-void				rrr(t_stack *stack_a, t_stack *stack_b);
+void				sa(t_push_swap *ps);
+void				sb(t_push_swap *ps);
+void				pa(t_push_swap *ps);
+void				pb(t_push_swap *ps);
+void				ra(t_push_swap *ps);
+void				rb(t_push_swap *ps);
+void				rra(t_push_swap *ps);
+void				rrb(t_push_swap *ps);
 
 int					check_input(int ac, char **av);
 int					*parse(int ac, char **av);

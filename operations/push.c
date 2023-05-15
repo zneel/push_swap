@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 23:15:24 by ebouvier          #+#    #+#             */
-/*   Updated: 2023/05/13 23:48:50 by ebouvier         ###   ########.fr       */
+/*   Updated: 2023/05/15 17:45:31 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,21 +20,25 @@
  * @param stack_b 
  * @param stack_a 
  */
-void	pa(t_stack *stack_b, t_stack *stack_a)
+void	pa(t_push_swap *ps)
 {
-	int	b_top;
-	int	a_top;
-	int	element;
+	int		element;
+	int		a_top;
+	int		b_top;
+	t_list	*node;
 
-	b_top = stack_b->top;
-	a_top = stack_a->top;
+	a_top = ps->stack_a->top;
+	b_top = ps->stack_b->top;
 	if (b_top >= 0)
 	{
-		element = stack_b->data[b_top];
-		stack_a->data[++a_top] = element;
-		stack_b->top--;
-		stack_a->top++;
-		ft_putendl_fd("pa", 1);
+		node = ft_lstnew(ft_strdup("pa\n"));
+		if (!node)
+			return ;
+		element = ps->stack_b->data[b_top];
+		ps->stack_a->data[++a_top] = element;
+		ps->stack_b->top--;
+		ps->stack_a->top++;
+		ft_lstadd_back(&ps->output, node);
 	}
 }
 
@@ -46,20 +50,24 @@ void	pa(t_stack *stack_b, t_stack *stack_a)
  * @param stack_a 
  * @param stack_b 
  */
-void	pb(t_stack *stack_a, t_stack *stack_b)
+void	pb(t_push_swap *ps)
 {
+	int element;
 	int a_top;
 	int b_top;
-	int element;
+	t_list *node;
 
-	a_top = stack_a->top;
-	b_top = stack_b->top;
+	a_top = ps->stack_a->top;
+	b_top = ps->stack_b->top;
 	if (a_top >= 0)
 	{
-		element = stack_a->data[a_top];
-		stack_b->data[++b_top] = element;
-		stack_a->top--;
-		stack_b->top++;
-		ft_putendl_fd("pb", 1);
+		node = ft_lstnew(ft_strdup("pb\n"));
+		if (!node)
+			return ;
+		element = ps->stack_a->data[a_top];
+		ps->stack_b->data[++b_top] = element;
+		ps->stack_a->top--;
+		ps->stack_b->top++;
+		ft_lstadd_back(&ps->output, node);
 	}
 }

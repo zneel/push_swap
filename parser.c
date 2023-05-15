@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 23:13:21 by ebouvier          #+#    #+#             */
-/*   Updated: 2023/05/13 23:27:11 by ebouvier         ###   ########.fr       */
+/*   Updated: 2023/05/15 12:13:23 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,27 +34,26 @@ int	check_input(int ac, char **av)
 	return (1);
 }
 
-int *parse(int ac, char **av)
+int	*parse(int ac, char **av)
 {
-    int i;
-    int *res;
+	int	i;
+	int	*res;
 
-    res = malloc(sizeof(int) * (ac - 1));
-    if (!res)
-        return (0);
-
-    i = 1;
-    while (i < ac)
-    {
-        res[ac - i - 1] = ft_atoi(av[i]);
-        i++;
-    }
-    return (res);
+	res = malloc(sizeof(int) * (ac - 1));
+	if (!res)
+		return (0);
+	i = 1;
+	while (i < ac)
+	{
+		res[ac - i - 1] = ft_atoi(av[i]);
+		i++;
+	}
+	return (res);
 }
 
 void	print_arr(int *arr, int size)
 {
-	int	i;
+	int i;
 
 	i = 0;
 	while (i < size)

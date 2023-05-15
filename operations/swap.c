@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 23:14:45 by ebouvier          #+#    #+#             */
-/*   Updated: 2023/05/13 23:44:38 by ebouvier         ###   ########.fr       */
+/*   Updated: 2023/05/15 17:14:34 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,23 +15,43 @@
 /**
  * @brief 
  * Swap a
- * Swap the first 2 elements at the top of stack a
+ * Swap the first 2 elements at the top of stack
  * Do nothing if there is only one or no elements.
- * @param stack_a 
+ * @param stack
  */
-void	sa(t_stack *stack_a, int print)
+int	swap(t_stack *stack)
 {
 	int	top;
 	int	tmp;
 
-	top = stack_a->top;
-	if (stack_a->top > 0)
+	top = stack->top;
+	if (stack->top > 0)
 	{
-		tmp = stack_a->data[top];
-		stack_a->data[top] = stack_a->data[top - 1];
-		stack_a->data[top - 1] = tmp;
-		if (print)
-			ft_putendl_fd("sa", 1);
+		tmp = stack->data[top];
+		stack->data[top] = stack->data[top - 1];
+		stack->data[top - 1] = tmp;
+		return (1);
+	}
+	return (0);
+}
+
+/**
+ * @brief 
+ * Swap a
+ * Swap the first 2 elements at the top of stack a
+ * Do nothing if there is only one or no elements.
+ * @param stack_a 
+ */
+void	sa(t_push_swap *ps)
+{
+	t_list	*node;
+
+	if (swap(ps->stack_a))
+	{
+		node = ft_lstnew(ft_strdup("sa\n"));
+		if (!node)
+			return ;
+		ft_lstadd_back(&ps->output, node);
 	}
 }
 
@@ -42,34 +62,15 @@ void	sa(t_stack *stack_a, int print)
  * Do nothing if there is only one or no elements.
  * @param stack_b 
  */
-void	sb(t_stack *stack_b, int print)
+void	sb(t_push_swap *ps)
 {
-	int	top;
-	int	tmp;
+	t_list	*node;
 
-	top = stack_b->top;
-	if (stack_b->top > 0)
+	if (swap(ps->stack_b))
 	{
-		tmp = stack_b->data[top];
-		stack_b->data[top] = stack_b->data[top - 1];
-		stack_b->data[top - 1] = tmp;
-		if (print)
-			ft_putendl_fd("sb", 1);
-	}
-}
-
-/**
- * @brief 
- * swap a and b at the same time
- * @param stack_a 
- * @param stack_b 
- */
-void	ss(t_stack *stack_a, t_stack *stack_b)
-{
-	if (stack_a->top > 1 && stack_b->top > 1)
-	{
-		sa(stack_a, 0);
-		sb(stack_b, 0);
-		ft_putendl_fd("ss", 1);
+		node = ft_lstnew(ft_strdup("sb\n"));
+		if (!node)
+			return ;
+		ft_lstadd_back(&ps->output, node);
 	}
 }
