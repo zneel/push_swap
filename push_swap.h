@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 18:09:32 by ebouvier          #+#    #+#             */
-/*   Updated: 2023/05/15 17:37:05 by ebouvier         ###   ########.fr       */
+/*   Updated: 2023/05/15 22:40:07 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "lists.h"
 # include <stdio.h>
 # include <stdlib.h>
+# include <limits.h>
 
 typedef struct s_stack
 {
@@ -32,6 +33,12 @@ typedef struct s_push_swap
 	t_list			*output;
 }					t_push_swap;
 
+typedef struct s_pivots
+{
+	int				*pivots;
+	int				count;
+}					t_pivots;
+
 void				sa(t_push_swap *ps);
 void				sb(t_push_swap *ps);
 void				pa(t_push_swap *ps);
@@ -44,6 +51,6 @@ void				rrb(t_push_swap *ps);
 int					check_input(int ac, char **av);
 int					*parse(int ac, char **av);
 void				print_arr(int *arr, int size);
-void				solve(t_push_swap *pushswap);
+void				solve(t_push_swap *ps);
 
 #endif
