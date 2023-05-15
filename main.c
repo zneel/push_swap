@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 18:10:52 by ebouvier          #+#    #+#             */
-/*   Updated: 2023/05/13 23:49:04 by ebouvier         ###   ########.fr       */
+/*   Updated: 2023/05/14 17:00:39 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ int	init_datastructures(int *arr, int size, t_push_swap *instance)
 	return (1);
 }
 
-void print_stack(t_stack *stack)
+void	print_stack(t_stack *stack)
 {
-	int i;
+	int	i;
 
 	i = stack->top;
 	printf("stack->top=%d\n", stack->top);
@@ -59,19 +59,24 @@ int	main(int ac, char **av)
 		free(input);
 		return (0);
 	}
-	printf("stack a\n");
-	print_stack(instance.stack_a);
-	printf("stack b\n");
-	print_stack(instance.stack_b);
-
-	sa(instance.stack_a,1);
-	pb(instance.stack_a, instance.stack_b);
-	pa(instance.stack_b, instance.stack_a);
-	printf("stack a\n");
-	print_stack(instance.stack_a);
-	printf("stack b\n");
-	print_stack(instance.stack_b);
-
+	// printf("stack a\n");
+	// print_stack(instance.stack_a);
+	// printf("stack b\n");
+	// print_stack(instance.stack_b);
+	// sa(instance.stack_a,1);
+	// pb(instance.stack_a, instance.stack_b);
+	// pb(instance.stack_a, instance.stack_b);
+	// pb(instance.stack_a, instance.stack_b);
+	// 	printf("stack a\n");
+	// print_stack(instance.stack_a);
+	// printf("stack b\n");
+	// print_stack(instance.stack_b);
+	// rr(instance.stack_a, instance.stack_b);
+	// printf("stack a\n");
+	// print_stack(instance.stack_a);
+	// printf("stack b\n");
+	// print_stack(instance.stack_b);
+	solve(&instance);
 	free(input);
 	free(instance.stack_a->data);
 	free(instance.stack_a);

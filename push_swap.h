@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 18:09:32 by ebouvier          #+#    #+#             */
-/*   Updated: 2023/05/13 23:32:07 by ebouvier         ###   ########.fr       */
+/*   Updated: 2023/05/14 17:00:12 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,6 @@ void				rrr(t_stack *stack_a, t_stack *stack_b);
 int					check_input(int ac, char **av);
 int					*parse(int ac, char **av);
 void				print_arr(int *arr, int size);
+void				solve(t_push_swap *pushswap);
 
 #endif
