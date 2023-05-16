@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 23:18:50 by ebouvier          #+#    #+#             */
-/*   Updated: 2023/05/15 23:58:04 by ebouvier         ###   ########.fr       */
+/*   Updated: 2023/05/16 22:52:26 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,36 +96,37 @@ t_pivots	*get_pivots(t_min min, t_max max)
 
 void	sort_pivots(t_push_swap *ps, t_pivots *pivots)
 {
+	int value;
+
 	while (ps->stack_a->top)
 	{
-		if (ps->stack_a->data[ps->stack_a->top] < pivots->pivots[0])
+		value = ps->stack_a->data[ps->stack_a->top];
+		if (value <= pivots->pivots[0])
 			pb(ps);
-		else if (ps->stack_a->data[ps->stack_a->top] >= pivots->pivots[0] && ps->stack_a->data[ps->stack_a->top] <= pivots->pivots[1])
+		else if (value <= pivots->pivots[1])
+		{
+			while (ps->stack_b->top >= 0 && ps->stack_b->data[ps->stack_b->top] <= pivots->pivots[0])
+                rb(ps);
+			pb(ps);
+		}
+		else if(value <= pivots->pivots[2])
 		{
 			while (ps->stack_b->top >= 0 && ps->stack_b->data[ps->stack_b->top] <= pivots->pivots[1])
                 rb(ps);
 			pb(ps);
 		}
-		else if(ps->stack_a->data[ps->stack_a->top] >= pivots->pivots[1] && ps->stack_a->data[ps->stack_a->top] <= pivots->pivots[2])
-		{
-			while (ps->stack_b->top >= 0 && ps->stack_b->data[ps->stack_b->top] >= pivots->pivots[0])
-                rrb(ps);
-			pb(ps);
-		}
-		else if (ps->stack_a->data[ps->stack_a->top] >= pivots->pivots[2])
-		{
-			while (ps->stack_b->top >= 0 && ps->stack_b->data[ps->stack_b->top] >= pivots->pivots[1])
-                rrb(ps);
-			pb(ps);
-		}
 		else
-			ra(ps);
+		{
+			while (ps->stack_b->top >= 0 && ps->stack_b->data[ps->stack_b->top] <= pivots->pivots[2])
+                rrb(ps);
+			pb(ps);
+		}
 	}
 }
 
 void	sort_large_input(t_push_swap *ps, t_pivots *pivots)
 {
-	// print_arr(ps->stack_a->data, ps->stack_a->size);
+	print_arr(ps->stack_a->data, ps->stack_a->size);
 	sort_pivots(ps, pivots);
 	// print_arr(ps->stack_b->data, ps->stack_b->top++);
 }
