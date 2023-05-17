@@ -6,23 +6,11 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 23:18:50 by ebouvier          #+#    #+#             */
-/*   Updated: 2023/05/16 22:52:26 by ebouvier         ###   ########.fr       */
+/*   Updated: 2023/05/17 23:26:05 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-typedef struct s_min
-{
-	int		value;
-	int		index;
-}			t_min;
-
-typedef struct s_max
-{
-	int		value;
-	int		index;
-}			t_max;
 
 t_min	get_min(t_stack *stack)
 {
@@ -71,6 +59,13 @@ t_max	get_max(t_stack *stack)
 // {
 // }
 
+/**
+ * @brief Generate n numbers of pivots from min max
+ * 
+ * @param min 
+ * @param max 
+ * @return t_pivots* 
+ */
 t_pivots	*get_pivots(t_min min, t_max max)
 {
 	t_pivots	*pivots;
@@ -94,41 +89,165 @@ t_pivots	*get_pivots(t_min min, t_max max)
 	return (pivots);
 }
 
-void	sort_pivots(t_push_swap *ps, t_pivots *pivots)
+/**
+ * @brief 
+ * Get the optimal way of getting n to the top
+ * @param a t_stack ptr
+ * @param n index of the number inside the stack
+ * @return 1 if the number is closer to the top (rotate)
+ */
+int	optimal_move(t_stack *stack, int n)
 {
-	int value;
+	return (n > stack->top / 2);
+}
 
-	while (ps->stack_a->top)
+/**
+ * @brief Get the first number thats less than
+ * the pivot starting from the top of the stack
+ * @param a 
+ * @param pivot 
+ * @return t_move 
+ */
+t_move	get_number_from_top(t_stack *a, int pivot)
+{
+	t_move	move;
+	int		i;
+
+	i = a->top;
+	while (i)
 	{
-		value = ps->stack_a->data[ps->stack_a->top];
-		if (value <= pivots->pivots[0])
-			pb(ps);
-		else if (value <= pivots->pivots[1])
+		if (a->data[i] < pivot)
 		{
-			while (ps->stack_b->top >= 0 && ps->stack_b->data[ps->stack_b->top] <= pivots->pivots[0])
-                rb(ps);
-			pb(ps);
+			move.index = i;
+			move.n = a->data[i];
+			break ;
 		}
-		else if(value <= pivots->pivots[2])
-		{
-			while (ps->stack_b->top >= 0 && ps->stack_b->data[ps->stack_b->top] <= pivots->pivots[1])
-                rb(ps);
-			pb(ps);
-		}
-		else
-		{
-			while (ps->stack_b->top >= 0 && ps->stack_b->data[ps->stack_b->top] <= pivots->pivots[2])
-                rrb(ps);
-			pb(ps);
-		}
+		i--;
 	}
+	return (move);
+}
+
+/**
+ * @brief Get the first number thats less than the 
+ * pivot starting from the bottom of the stack
+ * @param a 
+ * @param pivot 
+ * @return t_move 
+ */
+t_move	get_number_from_bottom(t_stack *a, int pivot)
+{
+	t_move	move;
+	int		i;
+
+	i = 0;
+	while (i < a->top)
+	{
+		if (a->data[i] < pivot)
+		{
+			move.index = i;
+			move.n = a->data[i];
+			break ;
+		}
+		i++;
+	}
+	return (move);
+}
+
+/**
+ * @brief Get the idx of n in stack
+ * 
+ * @param stack 
+ * @param n 
+ * @return int 
+ */
+int	get_number_idx(t_stack *stack, int n)
+{
+	int	i;
+
+	i = 0;
+	while (i < stack->top)
+	{
+		if (stack->data[i] == n)
+			return (i);
+		i++;
+	}
+	return (-1);
+}
+
+/**
+ * @brief Get the biggest number index in stack
+ * 
+ * @param stack 
+ * @return int 
+ */
+int	get_biggest(t_stack *stack)
+{
+	int	i;
+	int	biggest;
+
+	i = 0;
+	biggest = INT_MIN;
+	while (i < stack->top)
+	{
+		if (stack->data[i] > biggest)
+			biggest = stack->data[i];
+		i++;
+	}
+	return (biggest);
+}
+
+/**
+ * @brief Push back elements in A from biggest to smallest
+ * 
+ * @param ps 
+ */
+void	push_back(t_push_swap *ps)
+{
+	int	biggest;
+
+	while (ps->stack_b->top >= 0)
+	{
+		biggest = get_biggest(ps->stack_a);
+		while (ps->stack_b->data[ps->stack_b->top] != biggest)
+		{
+			if (optimal_move(ps->stack_b, biggest))
+				rb(ps);
+			else
+				rrb(ps);
+		}
+		if (ps->stack_b->data[ps->stack_b->top] == biggest)
+			pa(ps);
+	}
+}
+
+void	push_right(t_push_swap *ps, t_pivots *pivots)
+{
+	t_move	top_move;
+	t_move	bottom_move;
+	int		i;
+
+	i = 0;
+	while (i < pivots->count)
+	{
+		top_move = get_number_from_top(ps->stack_a, pivots->pivots[i]);
+		bottom_move = get_number_from_bottom(ps->stack_a,
+				pivots->pivots[i]);
+		printf("optimal move = %s\n", optimal_move(ps->stack_a, top_move.index) ? "RA" : "RRA");
+		if (optimal_move(ps->stack_a, top_move.index))
+			while (ps->stack_a->data[ps->stack_a->top] != bottom_move.n)
+				ra(ps);
+		else
+			while (ps->stack_a->data[ps->stack_a->top] != bottom_move.n)
+				rra(ps);
+		pb(ps); // check b before pushing it may need rotating in order to keep the numbers tied to their pivots
+	}
+	i++;
 }
 
 void	sort_large_input(t_push_swap *ps, t_pivots *pivots)
 {
-	print_arr(ps->stack_a->data, ps->stack_a->size);
-	sort_pivots(ps, pivots);
-	// print_arr(ps->stack_b->data, ps->stack_b->top++);
+	push_right(ps, pivots);
+	push_back(ps);
 }
 
 void	solve(t_push_swap *ps)

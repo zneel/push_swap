@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 18:10:52 by ebouvier          #+#    #+#             */
-/*   Updated: 2023/05/16 22:49:15 by ebouvier         ###   ########.fr       */
+/*   Updated: 2023/05/17 23:23:46 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,8 @@ int	main(int ac, char **av)
 		return (ft_putstr_fd("Error\n", 1), 0);
 	input = parse(ac, av);
 	normalize(input, ac - 1);
+	// print_arr(input, ac-1);
+	instance.output = NULL;
 	if (!init_datastructures(input, ac - 1, &instance))
 		return (free(input), 0);
 	// printf("stack a\n");

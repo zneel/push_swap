@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 18:09:32 by ebouvier          #+#    #+#             */
-/*   Updated: 2023/05/15 22:40:07 by ebouvier         ###   ########.fr       */
+/*   Updated: 2023/05/17 23:01:38 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 
 # include "libft.h"
 # include "lists.h"
+# include <limits.h>
 # include <stdio.h>
 # include <stdlib.h>
-# include <limits.h>
 
 typedef struct s_stack
 {
@@ -38,6 +38,24 @@ typedef struct s_pivots
 	int				*pivots;
 	int				count;
 }					t_pivots;
+
+typedef struct s_min
+{
+	int				value;
+	int				index;
+}					t_min;
+
+typedef struct s_max
+{
+	int				value;
+	int				index;
+}					t_max;
+
+typedef struct s_move
+{
+	int				n;
+	int				index;
+}					t_move;
 
 void				sa(t_push_swap *ps);
 void				sb(t_push_swap *ps);
