@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 18:09:32 by ebouvier          #+#    #+#             */
-/*   Updated: 2023/05/17 23:01:38 by ebouvier         ###   ########.fr       */
+/*   Updated: 2023/05/19 16:24:54 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,23 +33,16 @@ typedef struct s_push_swap
 	t_list			*output;
 }					t_push_swap;
 
+typedef struct s_pivot
+{
+	int				min;
+	int				max;
+}					t_pivot;
 typedef struct s_pivots
 {
-	int				*pivots;
+	t_pivot			*pivots;
 	int				count;
 }					t_pivots;
-
-typedef struct s_min
-{
-	int				value;
-	int				index;
-}					t_min;
-
-typedef struct s_max
-{
-	int				value;
-	int				index;
-}					t_max;
 
 typedef struct s_move
 {

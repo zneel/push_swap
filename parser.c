@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 23:13:21 by ebouvier          #+#    #+#             */
-/*   Updated: 2023/05/17 23:22:21 by ebouvier         ###   ########.fr       */
+/*   Updated: 2023/05/19 18:45:16 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,6 @@ void	print_arr(int *arr, int size)
 	i = 0;
 	while (i < size)
 		printf("%d ", arr[i++]);
+	printf("=top=");
 	printf("\n");
 }
