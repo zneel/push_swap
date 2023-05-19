@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 18:10:52 by ebouvier          #+#    #+#             */
-/*   Updated: 2023/05/19 23:37:20 by ebouvier         ###   ########.fr       */
+/*   Updated: 2023/05/20 00:13:26 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,23 +92,6 @@ int	main(int ac, char **av)
 	instance.output = NULL;
 	if (!init_datastructures(input, ac - 1, &instance))
 		return (free(input), 0);
-	// printf("stack a\n");
-	// print_stack(instance.stack_a);
-	// printf("stack b\n");
-	// print_stack(instance.stack_b);
-	// sa(instance.stack_a,1);
-	// pb(instance.stack_a, instance.stack_b);
-	// pb(instance.stack_a, instance.stack_b);
-	// pb(instance.stack_a, instance.stack_b);
-	// 	printf("stack a\n");
-	// print_stack(instance.stack_a);
-	// printf("stack b\n");
-	// print_stack(instance.stack_b);
-	// rr(instance.stack_a, instance.stack_b);
-	// printf("stack a\n");
-	// print_stack(instance.stack_a);
-	// printf("stack b\n");
-	// print_stack(instance.stack_b);
 	solve(&instance);
 	free(input);
 	free(instance.stack_a->data);

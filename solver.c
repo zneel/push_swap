@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 23:18:50 by ebouvier          #+#    #+#             */
-/*   Updated: 2023/05/19 23:53:36 by ebouvier         ###   ########.fr       */
+/*   Updated: 2023/05/20 00:07:50 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -249,9 +249,6 @@ void	push_right(t_push_swap *ps, t_pivots *pivots)
 	int		i;
 
 	i = 0;
-	// printf("stack_a: ");
-	// print_arr(ps->stack_a->data, ps->stack_a->top + 1);
-	// printf("\n");
 	while (i < pivots->count)
 	{
 		top_move.n = 1;
@@ -284,11 +281,6 @@ void	push_right(t_push_swap *ps, t_pivots *pivots)
 void	sort_large_input(t_push_swap *ps, t_pivots *pivots)
 {
 	push_right(ps, pivots);
-	// printf("\nstack_b:");
-	// print_arr(ps->stack_b->data, ps->stack_b->top + 1);
-	// printf("\n");
-	// printf("after push right\n");
-	// print_arr(ps->stack_b->data, ps->stack_b->top + 1);
 	push_back(ps);
 }
 
@@ -298,23 +290,8 @@ void	solve(t_push_swap *ps)
 
 	if (ps->stack_a->size == 2)
 		return (solve_for_2(ps));
-	// if (ps->stack_a->size > 3)
 	pivots = get_pivots(ps->stack_a);
-	// for (int i = 0; i < pivots->count; i++)
-	// {
-	// 	printf("min%d\n", pivots->pivots[i].min);
-	// 	printf("max%d\n", pivots->pivots[i].max);
-	// 	printf("=====\n");
-	// }
 	sort_large_input(ps, pivots);
 	free(pivots->pivots);
 	free(pivots);
-	// int	*sorted_input;
-	// sorted_input = malloc(sizeof(int) * ps->stack_a->size);
-	// if (!sorted_input)
-	// 	return ;
-	// ft_memcpy(sorted_input, input, sizeof(int) * (ps->stack_a->size));
-	// quick_sort(sorted_input, 0, ps->stack_a->size - 1);
-	// print_arr(sorted_input, ps->stack_a->size);
-	// free(sorted_input);
 }
