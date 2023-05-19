@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 18:10:52 by ebouvier          #+#    #+#             */
-/*   Updated: 2023/05/19 15:10:41 by ebouvier         ###   ########.fr       */
+/*   Updated: 2023/05/19 23:37:20 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ int	main(int ac, char **av)
 	free(instance.stack_a);
 	free(instance.stack_b->data);
 	free(instance.stack_b);
-	instance.output = ft_lstreverse(instance.output);
+	optimize_instructions(instance.output);
 	ft_lstprint_str(instance.output);
 	ft_lstclear(&instance.output, free);
 	return (0);

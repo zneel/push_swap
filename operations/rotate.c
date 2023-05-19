@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 23:16:20 by ebouvier          #+#    #+#             */
-/*   Updated: 2023/05/15 17:24:43 by ebouvier         ###   ########.fr       */
+/*   Updated: 2023/05/19 22:31:30 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,18 @@
 int	rotate(t_stack *stack)
 {
 	int	i;
-	int	first;
+	int	last;
 
 	if (stack->top <= 0)
 		return (0);
-	i = 0;
-	first = stack->data[0];
-	while (i < stack->top)
+	i = stack->top;
+	last = stack->data[stack->top];
+	while (i > 0)
 	{
-		stack->data[i] = stack->data[i + 1];
-		i++;
+		stack->data[i] = stack->data[i - 1];
+		i--;
 	}
-	stack->data[stack->top] = first;
+	stack->data[0] = last;
 	return (1);
 }
 

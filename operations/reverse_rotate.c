@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 23:16:12 by ebouvier          #+#    #+#             */
-/*   Updated: 2023/05/15 17:37:09 by ebouvier         ###   ########.fr       */
+/*   Updated: 2023/05/19 21:36:42 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,18 @@
 int	reverse_rotate(t_stack *stack)
 {
 	int	i;
-	int	last;
+	int	first;
 
 	if (stack->top <= 0)
 		return (0);
-	i = stack->top;
-	last = stack->data[stack->top];
-	while (i > 0)
+	i = 0;
+	first = stack->data[0];
+	while (i < stack->top)
 	{
-		stack->data[i] = stack->data[i - 1];
-		i--;
+		stack->data[i] = stack->data[i + 1];
+		i++;
 	}
-	stack->data[0] = last;
+	stack->data[stack->top] = first;
 	return (1);
 }
 

@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 18:09:32 by ebouvier          #+#    #+#             */
-/*   Updated: 2023/05/19 16:24:54 by ebouvier         ###   ########.fr       */
+/*   Updated: 2023/05/19 23:53:53 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # include <limits.h>
 # include <stdio.h>
 # include <stdlib.h>
+
+# define PIVOTS_COUNT 11
 
 typedef struct s_stack
 {
@@ -63,5 +65,6 @@ int					check_input(int ac, char **av);
 int					*parse(int ac, char **av);
 void				print_arr(int *arr, int size);
 void				solve(t_push_swap *ps);
+void				optimize_instructions(t_list *lst);
 
 #endif
