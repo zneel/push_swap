@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 23:18:50 by ebouvier          #+#    #+#             */
-/*   Updated: 2023/05/20 00:07:50 by ebouvier         ###   ########.fr       */
+/*   Updated: 2023/05/20 15:22:56 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,36 @@ void	solve_for_2(t_push_swap *ps)
 	stack = ps->stack_a;
 	if (stack->data[stack->top] > stack->data[stack->top - 1])
 		ra(ps);
+}
+
+void	solve_for_3(t_push_swap *ps)
+{
+	int	a;
+	int	b;
+	int	c;
+
+	a = ps->stack_a->data[0];
+	b = ps->stack_a->data[1];
+	c = ps->stack_a->data[2];
+	if (a > b && b < c)
+	{
+		if (a > c)
+			sa(ps);
+	}
+	else if (a < b && b > c)
+	{
+		sa(ps);
+		ra(ps);
+	}
+	else if (a > b && b > c)
+	{
+		sa(ps);
+		rra(ps);
+	}
+	else if (a < b && b < c)
+		sa(ps);
+	else if (a < b && b > c)
+		rra(ps);
 }
 
 /**
@@ -290,6 +320,8 @@ void	solve(t_push_swap *ps)
 
 	if (ps->stack_a->size == 2)
 		return (solve_for_2(ps));
+	if (ps->stack_a->size == 3)
+		return (solve_for_3(ps));
 	pivots = get_pivots(ps->stack_a);
 	sort_large_input(ps, pivots);
 	free(pivots->pivots);
