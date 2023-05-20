@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 18:10:52 by ebouvier          #+#    #+#             */
-/*   Updated: 2023/05/20 00:13:26 by ebouvier         ###   ########.fr       */
+/*   Updated: 2023/05/20 15:58:05 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,11 @@ void	normalize(int *arr, int n)
 	free(sorted);
 }
 
+int sorted(int a, int b)
+{
+    return b - a;
+}
+
 int	main(int ac, char **av)
 {
 	int			*input;
@@ -87,6 +92,8 @@ int	main(int ac, char **av)
 	if (!check_input(ac, av))
 		return (ft_putstr_fd("Error\n", 1), 0);
 	input = parse(ac, av);
+	if (is_sorted(input, ac-1, sorted))
+		return (free(input), 0);
 	normalize(input, ac - 1);
 	// print_arr(input, ac-1);
 	instance.output = NULL;
