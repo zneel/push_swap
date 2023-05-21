@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 18:09:32 by ebouvier          #+#    #+#             */
-/*   Updated: 2023/05/20 16:13:36 by ebouvier         ###   ########.fr       */
+/*   Updated: 2023/05/21 13:50:35 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@
 # include <limits.h>
 # include <stdio.h>
 # include <stdlib.h>
-
-# define PIVOTS_COUNT 8
 
 typedef struct s_stack
 {
@@ -66,5 +64,12 @@ int					*parse(int ac, char **av);
 void				print_arr(int *arr, int size);
 void				solve(t_push_swap *ps);
 void				optimize_instructions(t_list *lst);
+t_pivots			*get_pivots(t_stack *stack, int pivots_count);
+void				push(t_push_swap *ps, t_pivots *pivots);
+void				pull(t_push_swap *ps);
+int					free_and_exit(int *input, t_push_swap *instance);
+
+t_move				get_biggest(t_stack *stack);
+t_move				get_smallest(t_stack *stack);
 
 #endif

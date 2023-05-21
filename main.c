@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 18:10:52 by ebouvier          #+#    #+#             */
-/*   Updated: 2023/05/20 15:58:05 by ebouvier         ###   ########.fr       */
+/*   Updated: 2023/05/21 13:43:51 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,18 +32,6 @@ int	init_datastructures(int *arr, int size, t_push_swap *instance)
 	instance->stack_b->top = -1;
 	instance->stack_b->size = size;
 	return (1);
-}
-
-void	print_stack(t_stack *stack)
-{
-	int	i;
-
-	i = stack->top;
-	printf("stack->top=%d\n", stack->top);
-	printf("stack->size=%d\n", stack->size);
-	while (i >= 0)
-		printf("%d\n", stack->data[i--]);
-	printf("-------------------------------------------\n");
 }
 
 int	find_index(int *arr, int n, int value)
@@ -79,9 +67,9 @@ void	normalize(int *arr, int n)
 	free(sorted);
 }
 
-int sorted(int a, int b)
+int	sorted(int a, int b)
 {
-    return b - a;
+	return (b - a);
 }
 
 int	main(int ac, char **av)
@@ -89,24 +77,21 @@ int	main(int ac, char **av)
 	int			*input;
 	t_push_swap	instance;
 
+	if (ac == 1)
+		return (0);
 	if (!check_input(ac, av))
 		return (ft_putstr_fd("Error\n", 1), 0);
 	input = parse(ac, av);
-	if (is_sorted(input, ac-1, sorted))
+	if (is_sorted(input, ac - 1, sorted))
 		return (free(input), 0);
 	normalize(input, ac - 1);
-	// print_arr(input, ac-1);
 	instance.output = NULL;
 	if (!init_datastructures(input, ac - 1, &instance))
-		return (free(input), 0);
+		return (free_and_exit(input, &instance));
 	solve(&instance);
-	free(input);
-	free(instance.stack_a->data);
-	free(instance.stack_a);
-	free(instance.stack_b->data);
-	free(instance.stack_b);
 	optimize_instructions(instance.output);
 	ft_lstprint_str(instance.output);
 	ft_lstclear(&instance.output, free);
+	free_and_exit(input, &instance);
 	return (0);
 }

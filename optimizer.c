@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 23:26:11 by ebouvier          #+#    #+#             */
-/*   Updated: 2023/05/20 14:06:59 by ebouvier         ###   ########.fr       */
+/*   Updated: 2023/05/21 14:23:42 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,8 @@ t_list	*optimize_instruction(t_list *current, char *new_instruction)
 
 int	optimize_rr(t_list *current)
 {
-	if (current && current->next &&
-		ft_strncmp(current->content, "ra", 2) == 0 &&
-		ft_strncmp(current->next->content, "rb", 2) == 0)
+	if (current && current->next && ft_strncmp(current->content, "ra", 2) == 0
+		&& ft_strncmp(current->next->content, "rb", 2) == 0)
 	{
 		optimize_instruction(current, "rr\n");
 		return (1);
@@ -40,9 +39,8 @@ int	optimize_rr(t_list *current)
 
 int	optimize_rrr(t_list *current)
 {
-	if (current && current->next &&
-		ft_strncmp(current->content, "rra", 3) == 0 &&
-		ft_strncmp(current->next->content, "rrb", 3) == 0)
+	if (current && current->next && ft_strncmp(current->content, "rra", 3) == 0
+		&& ft_strncmp(current->next->content, "rrb", 3) == 0)
 	{
 		optimize_instruction(current, "rrr\n");
 		return (1);
@@ -52,9 +50,8 @@ int	optimize_rrr(t_list *current)
 
 int	optimize_ss(t_list *current)
 {
-	if (current && current->next &&
-		ft_strncmp(current->content, "sa", 2) == 0 &&
-		ft_strncmp(current->next->content, "sb", 2) == 0)
+	if (current && current->next && ft_strncmp(current->content, "sa", 2) == 0
+		&& ft_strncmp(current->next->content, "sb", 2) == 0)
 	{
 		optimize_instruction(current, "ss\n");
 		return (1);
@@ -64,11 +61,11 @@ int	optimize_ss(t_list *current)
 
 void	optimize_instructions(t_list *lst)
 {
-	t_list *current;
-	t_list *prev;
+	t_list	*current;
+	t_list	*prev;
+
 	current = lst;
 	prev = NULL;
-
 	while (current && current->next)
 	{
 		if (optimize_rr(current) || optimize_rrr(current)
