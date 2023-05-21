@@ -6,7 +6,7 @@
 #    By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/11 18:09:36 by ebouvier          #+#    #+#              #
-#    Updated: 2023/05/21 19:08:44 by ebouvier         ###   ########.fr        #
+#    Updated: 2023/05/21 20:59:56 by ebouvier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ CFLAGS = -Wall -Wextra -Werror -g3
 SRCS =	main.c operations/push.c operations/rotate.c operations/reverse_rotate.c \
 		operations/swap.c parser.c solver.c optimizer.c \
 		solver/big_small_getters.c  solver/pivots.c  solver/push_pull.c \
-		free.c
+		free.c init.c
 		
 
 OBJS = $(SRCS:.c=.o)

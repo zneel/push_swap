@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 18:09:32 by ebouvier          #+#    #+#             */
-/*   Updated: 2023/05/21 16:56:22 by ebouvier         ###   ########.fr       */
+/*   Updated: 2023/05/21 20:59:01 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ t_pivots			*get_pivots(t_stack *stack, int pivots_count);
 void				push(t_push_swap *ps, t_pivots *pivots);
 void				pull(t_push_swap *ps);
 int					free_and_exit(int *input, t_push_swap *instance);
+int					init_datastructures(int *arr, int size,
+						t_push_swap *instance);
 
 int					*parse(int ac, char **av);
 int					has_duplicates(int *input, int len);
