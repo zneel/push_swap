@@ -6,13 +6,13 @@
 #    By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/11 18:09:36 by ebouvier          #+#    #+#              #
-#    Updated: 2023/05/21 12:31:39 by ebouvier         ###   ########.fr        #
+#    Updated: 2023/05/21 19:08:44 by ebouvier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -g3
 
 SRCS =	main.c operations/push.c operations/rotate.c operations/reverse_rotate.c \
 		operations/swap.c parser.c solver.c optimizer.c \

@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 23:18:50 by ebouvier          #+#    #+#             */
-/*   Updated: 2023/05/21 14:22:46 by ebouvier         ###   ########.fr       */
+/*   Updated: 2023/05/21 19:55:05 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	solve_for_5(t_push_swap *ps)
 		min = get_smallest(a);
 		while (a->data[a->top] != min.n)
 		{
-			if (min.index > a->top / 2)
+			if (min.index >= a->top / 2)
 				ra(ps);
 			else
 				rra(ps);
@@ -69,7 +69,7 @@ void	solve_for_5(t_push_swap *ps)
 		pb(ps);
 	}
 	solve_for_3(ps);
-	if (b->data[b->top] < b->data[b->top - 1])
+	if (b->data[1] < b->data[0])
 		sb(ps);
 	pa(ps);
 	pa(ps);
@@ -89,7 +89,7 @@ void	solve(t_push_swap *ps)
 		return (solve_for_2(ps));
 	else if (ps->stack_a->size == 3)
 		return (solve_for_3(ps));
-	else if (ps->stack_a->size == 5)
+	else if (ps->stack_a->size <= 5)
 		return (solve_for_5(ps));
 	else if (ps->stack_a->size <= 100)
 		pivots = get_pivots(ps->stack_a, 5);

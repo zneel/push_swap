@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 18:09:32 by ebouvier          #+#    #+#             */
-/*   Updated: 2023/05/21 13:50:35 by ebouvier         ###   ########.fr       */
+/*   Updated: 2023/05/21 16:56:22 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,15 +59,17 @@ void				rb(t_push_swap *ps);
 void				rra(t_push_swap *ps);
 void				rrb(t_push_swap *ps);
 
-int					check_input(int ac, char **av);
-int					*parse(int ac, char **av);
-void				print_arr(int *arr, int size);
 void				solve(t_push_swap *ps);
 void				optimize_instructions(t_list *lst);
 t_pivots			*get_pivots(t_stack *stack, int pivots_count);
 void				push(t_push_swap *ps, t_pivots *pivots);
 void				pull(t_push_swap *ps);
 int					free_and_exit(int *input, t_push_swap *instance);
+
+int					*parse(int ac, char **av);
+int					has_duplicates(int *input, int len);
+int					number_too_big(int *input, int len);
+int					check_input(int ac, char **av);
 
 t_move				get_biggest(t_stack *stack);
 t_move				get_smallest(t_stack *stack);
